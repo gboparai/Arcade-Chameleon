@@ -1,0 +1,260 @@
+<html>
+   
+   <head>
+      <title>Arcade Chameleon</title>
+      <link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script type="text/javascript" src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+      <script type="text/javascript" src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.js"></script>
+      <script type="text/javascript"  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	  <meta charset="UTF-8"> 
+	  <link rel="stylesheet" type="text/css" href="style.css">
+	  <title>Arcade Chameleon</title>
+	  <meta name="description" content="Arcade Chameleon has 800+ games ready for you to play and enjoy on your phone, tablet or desktop. Choose a games from our 43 different categories.">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  
+
+   </head>
+   
+   <body>
+      
+      <div ng-app = "mainApp">
+         <div ng-view></div>
+         
+         <script type = "text/ng-template" id = "home.htm">
+		 <div class = "logo-background"><img class = "logo" alt ="logo" src = "/images/logo.png" /></div>
+		<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+	
+				</div>
+				 <div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+					  <li><a href = "#home">Home</a></li>
+					 <li><a href = "#categories">Categories</a></li>  
+
+					</ul>
+					<div class ="pull-right search form-group">
+						 <input type="text" ng-model="search" placeholder="Search"> <a href ="#search/{{search}}" class = "btn btn-default">search</a>
+					</div>
+				</div>
+
+			  </div>
+			</nav>
+
+
+
+
+
+	    		<h2 class = "title">Home</h2>
+				<div class = "col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="btn-group pull-right sort">
+						<button ng-class = "{active : recent }" class = "btn btn-default" ng-click = "sortRecent()">Recent</button>
+						<button ng-class = "{active : viewed }" class = "btn btn-default" ng-click = "sortViewed()">Viewed</button>
+					</div>
+				</div>
+				
+				<center>
+				<div class = "img col-lg-2 col-md-3 col-sm-4 col-xs-12" ng-repeat = "game in games">
+					<div class="col-lg-12">
+						<img alt ="icon" src = "{{game.thumbnail}}" />
+					</div>
+					<div class="col-lg-12">
+						<a href="#game/{{game.title}}/{{game.id}}">{{ game.title}}</a>
+					</div>
+				</div>
+				
+			  <p class ="spacing"><button class ="btn btn-default btn-block" ng-click = "load()">Load More</button></p>
+	   		</center>
+         </script>
+
+	<script type = "text/ng-template" id = "search.htm">
+		 <div class = "logo-background"><img class = "logo" alt ="logo" src = "logo.png" /></div>
+	   <nav class="navbar navbar-default">
+			  <div class="container-fluid">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+	
+				</div>
+				 <div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+					  <li><a href = "#home">Home</a></li>
+					 <li><a href = "#categories">Categories</a></li>  
+
+					</ul>
+					<div class ="pull-right search">
+						 <input type="text" ng-model="search" placeholder="Search"> <a href ="#search/{{search}}" class = "btn btn-default">search</a>
+					</div>
+				</div>
+
+			  </div>
+			</nav>
+
+
+
+
+
+	    		<h2 class = "title">Search</h2>
+				
+				<center>
+				<div class = "img col-lg-2 col-md-3 col-sm-4 col-xs-12" ng-repeat = "game in games">
+					<div class="col-lg-12">
+						<img alt ="icon" src = "{{game.thumbnail}}" />
+					</div>
+					<div class="col-lg-12">
+						<a href="#game/{{game.title}}/{{game.id}}">{{ game.title}}</a>
+					</div>
+				</div>
+				
+	   		</center>
+         </script>
+         
+            		
+			
+
+         
+         <script type = "text/ng-template" id = "category.htm">
+		  <div class = "logo-background"><img class = "logo" alt ="logo" src = "logo.png" /></div>
+	    <nav class="navbar navbar-default">
+			  <div class="container-fluid">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+	
+				</div>
+				 <div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+					  <li><a href = "#home">Home</a></li>
+					 <li><a href = "#categories">Categories</a></li>  
+
+					</ul>
+					<div class ="pull-right search">
+						 <input type="text" ng-model="search" placeholder="Search"> <a href ="#search/{{search}}" class = "btn btn-default">search</a>
+					</div>
+				</div>
+
+			  </div>
+			</nav>
+
+	    		<h2 class = "title">{{category}}</h2>
+				<div class = "col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="btn-group pull-right sort">
+						<button ng-class = "{active : recent }" class = "btn btn-default" ng-click = "sortRecent()">Recent</button>
+						<button ng-class = "{active : viewed }" class = "btn btn-default" ng-click = "sortViewed()">Viewed</button>
+					</div>
+				</div>
+				
+				<center>
+				<div class = "img col-lg-2 col-md-3 col-sm-4 col-xs-12" ng-repeat = "game in games">
+					<div class="col-lg-12">
+						<img alt ="icon" src = "{{game.thumbnail}}" />
+					</div>
+					<div class="col-lg-12">
+						<a href="#game/{{game.title}}/{{game.id}}">{{ game.title}}</a>
+					</div>
+				</div>
+				
+			  <p class ="spacing"><button class ="btn btn-default btn-block" ng-click = "load()">Load More</button></p>
+	   		</center>
+         </script>
+	
+	 <script type = "text/ng-template" id = "game.htm">
+	  <div class = "logo-background"><img class = "logo" src = "logo.png" /></div>
+	     <nav class="navbar navbar-default">
+			  <div class="container-fluid">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+	
+				</div>
+				 <div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+					  <li><a href = "#home">Home</a></li>
+					 <li><a href = "#categories">Categories</a></li>  
+
+					</ul>
+					<div class ="pull-right search">
+						 <input type="text" ng-model="search" placeholder="Search"> <a href ="#search/{{search}}" class = "btn btn-default">search</a>
+					</div>
+				</div>
+
+			  </div>
+			</nav>
+		<div class = "container">
+	                <h2> {{title}} </h2>
+			<div class = "col-lg-3 col-md-3 col-sm-4 col-xs-12" style = "padding-bottom: 20px"> 
+				<img alt ="icon"  src = "{{thumbnail}}" />
+			</div>
+			<div class = "col-lg-9 col-md-9 col-sm-8 col-xs-12" style = "padding-bottom: 20px"> 
+				<p>{{description}}</p>
+				<p>Category: {{category}}</p>
+			</div>
+			<p class = "col-lg-12 col-md-12 col-sm-12 col-xs-12"><a href="#play/{{id}}" class ="btn btn-default btn-block"> Play now </a></p>
+		</div>
+			
+         </script>
+	 <script type = "text/ng-template" id = "play.htm">
+		
+	    <div id="mydiv">
+	   
+		<a href = "#game/{{game.title}}/{{game.id}}"><span class="glyphicon glyphicon-chevron-left"></span></a>
+	    </div>
+            <iframe ng-src= "{{link}}" style="border:0;width:100%;height:100%;overflow:hidden" width="100%" height="100%" scrolling="no"></iframe>
+            
+			</script>
+         
+         <script type = "text/ng-template" id = "categories.htm">
+		  <div class = "logo-background"><img class = "logo" alt ="logo" src = "logo.png" /></div>
+	   <nav class="navbar navbar-default">
+			  <div class="container-fluid">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+	
+				</div>
+				 <div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+					  <li><a href = "#home">Home</a></li>
+					 <li><a href = "#categories">Categories</a></li>  
+
+					</ul>
+					<div class ="pull-right search">
+						 <input type="text" ng-model="search" placeholder="Search"> <a href ="#search/{{search}}" class = "btn btn-default">search</a>
+					</div>
+				</div>
+
+			  </div>
+			</nav>
+	   <div class = "spacing">
+            	   <h2>Categories</h2>
+		   <ul class="list-group">
+			   <div ng-repeat = "game in games">
+				<a href = "#category/{{game.catagory}}"><li class="list-group-item">{{game.catagory}}</li></a>
+			   </div>
+		  </ul>
+	  </div>
+         </script>
+      </div>
+	  
+	  <script type="text/javascript"  src="app.js"></script>
+      
+   </body>
+</html>
